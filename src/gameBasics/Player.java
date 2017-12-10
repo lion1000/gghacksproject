@@ -1,5 +1,7 @@
 package gameBasics;
 
+import cards.ChampionCard;
+
 public class Player {
 	private final static int NUM_COLS = 3;
 	private final static int NUM_ROWS = 4;
@@ -28,6 +30,18 @@ public class Player {
 		for (int i = 0; i < NUM_COLS; i++) {
 			columns[i] = new CardSet(NUM_ROWS);
 		}
+	}
+	public CardSet[] getColumns() {
+		return columns;
+	}
+	public CardSet getColumn(int i) {
+		return columns[i];
+	}
+	public CardSet getChampionCards() {
+		return championCards;
+	}
+	public ChampionCard getChampionCard(int i) {
+		return (ChampionCard) championCards.getCard(i);
 	}
 	
 	

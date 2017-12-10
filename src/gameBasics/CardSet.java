@@ -14,13 +14,13 @@ public class CardSet {
 	int numCards = 0;
 	public CardSet(Card...cards) {
 		this.cards = cards;
-		countCards();
+		
 		
 	}
 	
 	public CardSet(int numCards) {
 		cards = new Card[numCards];
-		countCards();
+		
 		
 	}
 	
@@ -30,7 +30,7 @@ public class CardSet {
 	public Card setCard(Card c, int i) {
 		Card cardAtSpot = cards[i];
 		cards[i] = c;
-		countCards();
+		
 		return cardAtSpot;
 		
 		
@@ -39,7 +39,7 @@ public class CardSet {
 	public Card removeCard(int i) {
 		Card cardAtSpot = cards[i];
 		cards[i] = null;
-		countCards();
+		
 		return cardAtSpot;
 	}
 	public boolean removeCard(Card c) {
@@ -47,7 +47,7 @@ public class CardSet {
 			Card card = cards[i];
 			if (card == c) {
 				cards[i] = null;
-				countCards();
+				
 				return true;
 			}
 		}
