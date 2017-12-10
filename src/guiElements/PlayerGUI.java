@@ -41,6 +41,10 @@ public class PlayerGUI extends JPanel implements ActionListener {
 	Client client;
 	private JButton takeActions = new JButton(); //TODO: Implement Icon for button
 	public PlayerGUI(Board board, Client client, boolean isPlayerOne) {
+		setVisible(true);
+		setDoubleBuffered(true);
+		setFocusable(true);
+		setLayout(null);
 		this.board = board;
 		this.client = client;
 		this.isPlayerOne = isPlayerOne;
@@ -66,8 +70,7 @@ public class PlayerGUI extends JPanel implements ActionListener {
 		totalOff = 0;
 		takeActions.setText("Take an Action");
 		takeActions.setBounds(ACTION_BUTTON_X,ACTION_BUTTON_Y, ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT);
-		setVisible(true);
-		setDoubleBuffered(true);
+		
 		
 		
 	}
