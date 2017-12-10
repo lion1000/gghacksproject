@@ -14,4 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>res/cards/trump.png</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Downloads/trump.png</locationURI>
+		</link>
+		<link>
+			<name>src/resources/trump.png</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Downloads/trump.png</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

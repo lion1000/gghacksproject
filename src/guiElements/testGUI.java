@@ -23,9 +23,11 @@ public class testGUI {
 		Deck test2 = new Deck(a,b);
 		PlayerGUI gui = new PlayerGUI(new Board(player1, player2, test, test2), c, true);
 		frame.add(gui);
-		frame.setSize(1980, 1020);
+		frame.setSize(1317, 710);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
 		
 		
 
