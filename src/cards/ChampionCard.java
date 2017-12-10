@@ -1,5 +1,5 @@
 package cards;
 
-public class ChampionCard {
+public class ChampionCard extends Card {
 
 }

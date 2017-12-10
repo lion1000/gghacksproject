@@ -1,57 +1,92 @@
 package gameBasics;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import cards.Card;
 
 public class CardSet {
 	private Card[] cards;
-	int maxCards;
-	boolean canBeModified = false;
-	int currIndex = 0;
 	
+	boolean canBeModified = false;
+	int numCards = 0;
 	public CardSet(Card...cards) {
 		this.cards = cards;
-		maxCards = cards.length;
+		countCards();
+		
 	}
-	public CardSet(boolean canBeModified, Card...cards) {
-		this(cards);
-		this.canBeModified = canBeModified;
-		if (canBeModified)
-			maxCards = -1;
-	}
+	
 	public CardSet(int numCards) {
 		cards = new Card[numCards];
-		maxCards = cards.length;
+		countCards();
 		
 	}
-	public CardSet(boolean canBeModified, int numCards) {
-		this(numCards);
-		this.canBeModified = canBeModified;
-		if (canBeModified)
-			maxCards = -1;
-		
-	}
+	
 	public Card getCard(int i) {
 		return cards[i];
 	}
 	public Card setCard(Card c, int i) {
-		Card x = cards[i];
-		cards[i] =c;
-		return x;
+		Card cardAtSpot = cards[i];
+		cards[i] = c;
+		countCards();
+		return cardAtSpot;
+		
+		
 	}
-	public void addCard(Card c) {
-		if (currIndex+1 > cards.length && canBeModified){
-			copyCards(currIndex+1);
-			
+	
+	public Card removeCard(int i) {
+		Card cardAtSpot = cards[i];
+		cards[i] = null;
+		countCards();
+		return cardAtSpot;
+	}
+	public boolean removeCard(Card c) {
+		for (int i = 0; i < cards.length;i++) {
+			Card card = cards[i];
+			if (card == c) {
+				cards[i] = null;
+				countCards();
+				return true;
+			}
 		}
-		cards[currIndex] = c;
-		currIndex++;
+		return false;
 	}
-	private void copyCards(int newLength) {
-		Card[] copy = new Card[newLength];
+	public int getMaxNumCards() {
+		return cards.length;
+	}
+	public int getNumCards() {
+		return countCards();
+	}
+	private int countCards() {
+		int total = 0;
+		for (Card c : cards)
+			if (c != null)
+				total++;
+		return total;
+	}
+	public String toString() {
+		StringBuilder output = new StringBuilder("[");
+		for (Card c: cards) {
+			output.append((c == null ? "null" : c.toString()) + ", ");
+		}
+		output.delete(output.length()-2, output.length());
+		output.append("]");
+		return output.toString();
+	}
+	public boolean containsCardAt(int i ) {
+		return cards[i] !=null;
+	}
+	public List<Integer> getValidIndices() {
+		List<Integer> nums = new LinkedList<Integer>();
 		for (int i = 0; i < cards.length; i++) {
-			copy[i] = cards[i];
+			if (cards[i] !=null)
+				nums.add(i);
 		}
-		cards = copy;
+		return nums;
 	}
+	
+	
 	
 }
