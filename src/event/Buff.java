@@ -9,7 +9,7 @@ public abstract class Buff<T extends BuffTarget> extends Event<T> {
         onStop(t);
     }
 
-    public abstract void onStop(T player);
+    public abstract void onStop(T t);
 
     @Override
     public void execute(T t) {

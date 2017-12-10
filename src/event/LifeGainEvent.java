@@ -11,8 +11,7 @@ public class LifeGainEvent extends Event<Player> {
     }
 
     @Override
-    public void execute(Player t) {
-
-        super.execute(t);
+    public void onExecute(Player player) {
+        player. add life (amount)
     }
 }

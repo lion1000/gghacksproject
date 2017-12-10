@@ -15,18 +15,61 @@ public class CardLoader {
             while ((line = br.readLine()) != null) {
                 // use comma as separator
                 String[] split = line.split(",");
+                for(int i = 0; i < split.length; i++)
+                    split[i] = split[i].replace(",", "");
                 String name = split[0];
                 String type = split[1];
                 String subType = split[2];
                 String id = split[3];
                 String text = split[4];
-                String flavor = split[5];
-                cards.add(new Card(ImageIO.read(CardLoader.class.getResource("/textures/display/" + id + ".png"))))
+                String att = split[5]; // power or defense or 0 if N/A
+                String flavor = split[6];
+                String cost = split[7];
+                if (type.equalsIgnoreCase("structure"))
+                    cards.add(new Structure(ImageIO.read(CardLoader.class.getResource("/textures/display/" + id + ".png")),
+                            ImageIO.read(CardLoader.class.getResource("/textures/card/" + id + ".png")),
+                            name,
+                            text,
+                            flavor,
+                            id.charAt(0),
+                            Integer.valueOf(id.substring(1)),
+                            Integer.valueOf(att),
+                            Integer.valueOf(cost)));
+                if(type.equalsIgnoreCase("guy"))
+                    cards.add(new Creature(ImageIO.read(CardLoader.class.getResource("/textures/display/" + id + ".png")),
+                            ImageIO.read(CardLoader.class.getResource("/textures/card/" + id + ".png")),
+                            name,
+                            text,
+                            flavor,
+                            id.charAt(0),
+                            Integer.valueOf(id.substring(1)),
+                            subType,
+                            Integer.valueOf(att),
+                            Integer.valueOf(cost)));
+                if(type.equalsIgnoreCase("spell"))
+                    cards.add(new Spell(ImageIO.read(CardLoader.class.getResource("/textures/display/" + id + ".png")),
+                            ImageIO.read(CardLoader.class.getResource("/textures/card/" + id + ".png")),
+                            name,
+                            text,
+                            flavor,
+                            id.charAt(0),
+                            Integer.valueOf(id.substring(1)),
+                            Integer.valueOf(cost)));
+                if(type.equalsIgnoreCase("special"))
+                    cards.add(new Spell(ImageIO.read(CardLoader.class.getResource("/textures/display/" + id + ".png")),
+                            ImageIO.read(CardLoader.class.getResource("/textures/card/" + id + ".png")),
+                            name,
+                            text,
+                            flavor,
+                            id.charAt(0),
+                            Integer.valueOf(id.substring(1)),
+                            Integer.valueOf(cost)));
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return new Deck(cards);
     }
 
 

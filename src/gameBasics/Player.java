@@ -110,7 +110,7 @@ public class Player implements BuffTarget {
         CardSet column = columns[clm];
         int totalDefense = 0;
         for (int i : column.getValidIndices()) {
-            if (Structure.IsStructure(column.getCard(i)))
+            if (Structure.isStructure(column.getCard(i)))
                 totalDefense += ((Structure) column.getCard(i)).getDefense();
         }
         return totalDefense;

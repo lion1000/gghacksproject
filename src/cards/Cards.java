@@ -2,7 +2,9 @@ package cards;
 
 public enum Cards {
 
-    ;
+    DO_U_EVER_MOVE("P1", () -> {
+
+    });
 
     private Runnable onPlay;
     private Runnable onRemove;

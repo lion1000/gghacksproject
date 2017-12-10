@@ -7,8 +7,8 @@ public class Creature extends Card {
 	private int power;
 	private int cost;
 	
-	public Creature(Image displayImage, Image cardImage, String title, char IDmod, int ID, String subType, int power, int cost) {
-		super(displayImage, cardImage, title, IDmod, ID);
+	public Creature(Image displayImage, Image cardImage, String title, String text, String flavor, char IDmod, int ID, String subType, int power, int cost) {
+		super(displayImage, cardImage, title, IDmod, ID, text, flavor);
 		this.subType = subType;
 		this.power = power;
 		this.cost = cost;

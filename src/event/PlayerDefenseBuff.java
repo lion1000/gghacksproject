@@ -10,7 +10,13 @@ public class PlayerDefenseBuff extends Buff<Player> {
         this.amount = amount;
     }
 
-    public void stop(Player player) {
-        player.removeBuff(this);
+    @Override
+    public void onStop(Player t) {
+        player.add defense ( - amount)
+    }
+
+    @Override
+    public void onExecute(Player player) {
+        player.add defense (amount)
     }
 }
