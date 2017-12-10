@@ -3,7 +3,9 @@ package cards;
 import java.awt.Image;
 
 public abstract class Card {
+	@LocalVariableDocumentation("Shown on board")
 	private Image displayImage; //shown on board
+	@LocalVariableDocumentation("Shown on hover")
 	private Image cardImage; // what is shown in hand/Hover (magnified)
 	private String title;
 	private char IDmod; //P for spell etc.
@@ -35,10 +37,10 @@ public abstract class Card {
 		this.flavorText = flavorText;
 	}
 	
-	public Image displayImage() {
+	public Image boardImage() {
 		return displayImage;
 	}
-	public Image cardImage() {
+	public Image hoverImage() {
 		return cardImage;
 	}
 	public String text() {
@@ -62,4 +64,8 @@ public abstract class Card {
 	public String toString() {
 		return title + ":\n " + text;
 	}
+	
+}
+@interface LocalVariableDocumentation {
+    String value();
 }
