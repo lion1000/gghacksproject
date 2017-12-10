@@ -25,6 +25,15 @@ public class Hand extends CardSet {
 			toggled[i] = false;
 		return returnVal;
 	}
+	public boolean addCard(Card c) { //returns false if unable to add card
+		for (int i = 0; i < this.getMaxNumCards(); i++) {
+			if (this.getCard(i) != null) {
+				setCard(c, i);
+				return true;
+			}
+		}
+		return false;
+	}
 	public Card setCard(Card c, int i, boolean toggled) {
 		Card returnVal = this.setCard(c, i);
 		if (c!= null)

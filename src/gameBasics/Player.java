@@ -1,5 +1,6 @@
 package gameBasics;
 
+import cards.Card;
 import cards.ChampionCard;
 import cards.Structure;
 import event.Buff;
@@ -34,7 +35,7 @@ public class Player implements BuffTarget {
 
     Hand hand = new Hand();
 
-    CardSet[] columns;
+    CardSet[] columns = new CardSet[NUM_COLS];
 
     CardSet championCards = new CardSet(NUM_COLS);
 
@@ -47,10 +48,43 @@ public class Player implements BuffTarget {
     public CardSet[] getColumns() {
         return columns;
     }
-
+    public boolean addToHand(Card c) { //returns false if unable to add to hand
+    		return hand.addCard(c);
+    }
+    public boolean removeFromHand(Card c) { //returns false if unable to remoev from hand
+		return hand.removeCard(c);
+}
+    public Card removeFromHand(int i) { //returns old card
+		return hand.removeCard(i);
+    }
+    public Hand getHand() { 
+		return hand;
+    }
     public CardSet getColumn(int i) {
         return columns[i];
     }
+    public void setColumn(CardSet c, int i) {
+    		columns[i] = c;
+    }
+    public void setCardInColumn(Card c, int clm, int indexOfCard) {
+    		columns[clm].setCard(c, indexOfCard);
+    }
+    public void getCardInColumn(Card c, int clm, int indexOfCard) {
+		columns[clm].getCard(indexOfCard);
+    }
+    public Card removeCardInColumn(int clm, int indexOfCard) {
+    		return columns[clm].removeCard(indexOfCard);
+    }
+    public boolean removeCardInColumn(int clm, Card c) {
+		return columns[clm].removeCard(c);
+}
+    public boolean removeCard(Card c) {
+		for (int i = 0; i < columns.length; i++) {
+			if (removeCardInColumn(i, c))
+				return true;
+		}
+		return false;
+}
 
     public CardSet getChampionCards() {
         return championCards;

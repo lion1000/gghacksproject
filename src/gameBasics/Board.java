@@ -56,6 +56,9 @@ public class Board {
 	public Player getPlayer2() {
 		return player2;
 	}
+	public boolean removeCard(Card c) {
+		return player1.removeCard(c) && player2.removeCard(c);
+	}
 
 
 }

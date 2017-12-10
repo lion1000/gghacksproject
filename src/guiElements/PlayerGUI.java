@@ -16,8 +16,8 @@ public class PlayerGUI extends JPanel implements ActionListener {
 
 	private static final int ACTION_BUTTON_X = 200;
 	private static final int ACTION_BUTTON_Y = 200;
-	private static final int ACTION_BUTTON_WIDTH = 50;
-	private static final int ACTION_BUTTON_HEIGHT = 50;
+	private static final int ACTION_BUTTON_WIDTH = 100;
+	private static final int ACTION_BUTTON_HEIGHT = 100;
 	
 	//Spaces that people place creatures etc on:
 	private static final int NORMAL_SPACE_WIDTH = 100;
@@ -41,17 +41,21 @@ public class PlayerGUI extends JPanel implements ActionListener {
 	Client client;
 	private JButton takeActions = new JButton(); //TODO: Implement Icon for button
 	public PlayerGUI(Board board, Client client, boolean isPlayerOne) {
-		setVisible(true);
+		
 		setDoubleBuffered(true);
 		setFocusable(true);
 		setLayout(null);
 		this.board = board;
 		this.client = client;
 		this.isPlayerOne = isPlayerOne;
-		if (isPlayerOne) 
+		if (isPlayerOne)  {
 			myPlayer = board.getPlayer1();
-		else
+			yourPlayer = board.getPlayer2();
+		}
+		else {
 			myPlayer = board.getPlayer2();
+			yourPlayer = board.getPlayer1();
+		}
 		myCols = new CardHolderSet[myPlayer.getColumns().length];
 		yourCols = new CardHolderSet[yourPlayer.getColumns().length];
 		if (myCols.length != yourCols.length) {
@@ -70,6 +74,9 @@ public class PlayerGUI extends JPanel implements ActionListener {
 		totalOff = 0;
 		takeActions.setText("Take an Action");
 		takeActions.setBounds(ACTION_BUTTON_X,ACTION_BUTTON_Y, ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT);
+		takeActions.setVisible(true);
+		add(takeActions);
+		setVisible(true);
 		
 		
 		

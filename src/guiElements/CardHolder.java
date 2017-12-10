@@ -69,9 +69,10 @@ public class CardHolder extends JComponent {
 	public CardHolder(Card card, int positionX, int positionY, int width, int height) {
 		this(positionX, positionY, width, height);
 		this.card = card;
+		if (card != null) {
 		this.currentPic = card.boardImage();
-		
 		onBoardImage = true;
+		}
 		
 	}
 	public CardHolder(Card card, int positionX, int positionY, int width, int height, MouseClickedEvent<CardHolder> clickEvent) {

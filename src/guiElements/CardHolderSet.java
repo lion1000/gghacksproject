@@ -20,8 +20,10 @@ public class CardHolderSet extends JComponent{
 	public CardHolderSet(CardSet c, int positionX, int positionY, int width, int height, int offset, boolean adjustInX) {
 		this.cardset = c;
 		int x = c.getMaxNumCards();
+		cardHolders = new CardHolder[x];
 		int currOffset = 0;
 		for (int i =0; i < x; i++) {
+			
 			if (adjustInX)
 				cardHolders[i] = new CardHolder(c.getCard(i), positionX+currOffset, positionY, width, height); //will account even if card is null
 			else
@@ -34,6 +36,7 @@ public class CardHolderSet extends JComponent{
 		this.cardset = c;
 		this.backwardsDisplay = backWardsDisplay;
 		int x = c.getMaxNumCards();
+		cardHolders = new CardHolder[x];
 		int currOffset = 0;
 		if (!backWardsDisplay) {
 		for (int i =0; i < x; i++) {
@@ -58,6 +61,7 @@ public class CardHolderSet extends JComponent{
 	public CardHolderSet(CardSet c, int positionX, int positionY, int width, int height, int[] offset, boolean adjustInX) {
 		this.cardset = c;
 		int x = c.getMaxNumCards();
+		cardHolders = new CardHolder[x];
 		int currOffset = 0;
 		for (int i =0; i < x; i++) {
 			if (adjustInX)
@@ -71,6 +75,7 @@ public class CardHolderSet extends JComponent{
 	public CardHolderSet(CardSet c, int positionX, int positionY, int width, int height, int[] offset, boolean adjustInX, boolean backwardsDisplay) {
 		this.cardset = c;
 		int x = c.getMaxNumCards();
+		cardHolders = new CardHolder[x];
 		this.backwardsDisplay = backwardsDisplay;
 		int currOffset = 0;
 		if (!backwardsDisplay) {

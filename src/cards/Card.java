@@ -12,18 +12,11 @@ public abstract class Card {
 	private int ID; //number
 	private String text = "";
 	private String flavorText = "";
-	
-	public Card(char IDmod, int ID) {
+
+	public Card(Image displayImage, Image cardImage, String title, char IDmod, int ID) {
+		this.title = title;
 		this.IDmod = IDmod;
 		this.ID = ID;
-	}
-	public Card(String title, char IDmod, int ID) {
-		this(IDmod,ID);
-		this.title = title;
-		
-	}
-	public Card(Image displayImage, Image cardImage, String title, char IDmod, int ID) {
-		this(title, IDmod, ID);
 		this.displayImage = displayImage;
 		this.cardImage = cardImage;
 		
