@@ -7,11 +7,15 @@ public class Board {
 	private CardSet specialCards = new CardSet(3);
 	private CardSet shopCards = new CardSet(6);
 	private Deck deck;
+	private Deck championCards;
+	private ChampionCard currentChampion;
 	boolean deckEmpty = false;
-	public Board(Player player1, Player player2, Deck d) {
+	boolean noMoreChampions = false;
+	public Board(Player player1, Player player2, Deck d, Deck championDeck) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.deck = d;
+		this.championCards = championDeck;
 	}
 	//returns two arrays, the first is array of total defense of col of first player, second for second player
 	public int[][] getTotalDefense() {
@@ -27,6 +31,21 @@ public class Board {
 					deckEmpty = true;
 			}
 		}
+	}
+	public ChampionCard getChampionCard() {
+		if (currentChampion == null) {
+			if (!noMoreChampions) {
+				if (!championCards.isEmpty())
+					currentChampion = (ChampionCard) championCards.drawCard();
+				else
+					noMoreChampions = true;
+			}
+		}
+		return currentChampion;
+	}
+	public void setChampionCard(Player p, int clm ) {
+		p.setChampionCard(currentChampion, clm);
+		currentChampion = null;
 	}
 	public void setSpecialCard(Card c, int i) {
 		this.specialCards.setCard(c, i);

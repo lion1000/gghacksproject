@@ -44,6 +44,9 @@ public class Player {
 	public ChampionCard getChampionCard(int i) {
 		return (ChampionCard) championCards.getCard(i);
 	}
+	public void setChampionCard(ChampionCard c, int clm) {
+		championCards.setCard(c, clm);
+	}
 	private int getTotalDefenseVal(int clm) {
 		CardSet column = columns[clm];
 		int totalDefense = 0;

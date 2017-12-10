@@ -3,6 +3,7 @@ package guiElements;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import gameBasics.Board;
@@ -12,6 +13,11 @@ import gameBasics.Player;
 public class PlayerGUI extends JPanel implements ActionListener {
 	Board board; //will gain information from this in order to pain the gui
 	//In all of the below, me is the player, you is the opponent
+
+	private static final int ACTION_BUTTON_X = 200;
+	private static final int ACTION_BUTTON_Y = 200;
+	private static final int ACTION_BUTTON_WIDTH = 50;
+	private static final int ACTION_BUTTON_HEIGHT = 50;
 	
 	//Spaces that people place creatures etc on:
 	private static final int NORMAL_SPACE_WIDTH = 100;
@@ -33,6 +39,7 @@ public class PlayerGUI extends JPanel implements ActionListener {
 	Player yourPlayer;
 	boolean isPlayerOne;
 	Client client;
+	private JButton takeActions = new JButton(); //TODO: Implement Icon for button
 	public PlayerGUI(Board board, Client client, boolean isPlayerOne) {
 		this.board = board;
 		this.client = client;
@@ -56,6 +63,12 @@ public class PlayerGUI extends JPanel implements ActionListener {
 			myCols[i] = new CardHolderSet(myPlayer.getColumn(i), START_X_COL_YOU, START_Y_COL + totalOff, NORMAL_SPACE_WIDTH, NORMAL_SPACE_HEIGHT, NORMAL_SPACE_WIDTH, true, true);
 			totalOff += DOWN_COLUMN;
 		}
+		totalOff = 0;
+		takeActions.setText("Take an Action");
+		takeActions.setBounds(ACTION_BUTTON_X,ACTION_BUTTON_Y, ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT);
+		setVisible(true);
+		setDoubleBuffered(true);
+		
 		
 	}
 	
