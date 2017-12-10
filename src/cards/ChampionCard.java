@@ -11,5 +11,6 @@ public class ChampionCard extends Card {
 	public boolean checkCondition(Board b) {
 		return condition.checkCondition(b);
 	}
+	
 
 }

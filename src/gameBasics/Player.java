@@ -1,10 +1,11 @@
 package gameBasics;
 
 import cards.ChampionCard;
+import cards.Structure;
 
 public class Player {
-	private final static int NUM_COLS = 3;
-	private final static int NUM_ROWS = 4;
+	public final static int NUM_COLS = 3;
+	public final static int NUM_ROWS = 4;
 	private final static int DEFAULT_STARTING_BANK_AMOUNT = 0;
 	private final static int DEFAULT_MAX_BANK_AMOUNT = 5;
 	private final static int DEFAULT_STARTING_RESERVE_AMOUNT = 0;
@@ -42,6 +43,21 @@ public class Player {
 	}
 	public ChampionCard getChampionCard(int i) {
 		return (ChampionCard) championCards.getCard(i);
+	}
+	private int getTotalDefenseVal(int clm) {
+		CardSet column = columns[clm];
+		int totalDefense = 0;
+		for (int i : column.getValidIndices()) {
+			if (Structure.IsStructure(column.getCard(i)))
+				totalDefense += ((Structure)column.getCard(i)).getDefense();
+		}
+		return totalDefense;
+	}
+	public int[] getTotalDefense() {
+		int[] FF = new int[NUM_COLS];
+		for (int i = 0; i < FF.length; i++) 
+			FF[i] = getTotalDefenseVal(i);
+		return FF;
 	}
 	
 	

@@ -10,7 +10,9 @@ import javax.swing.JComponent;
 
 public class CardHolder extends JComponent {
 	private Image border = new ImageIcon(this.getClass().getResource("")).getImage(); //TODO: Add IMAGE
+	private Image defaultImage = new ImageIcon(this.getClass().getResource("")).getImage();
 	private static final long serialVersionUID = 3639041433130104464L;
+	private static final int BORDER_OFFSET = 10;
 	private Card card;
 	private int width;
 	private int height;
@@ -21,17 +23,14 @@ public class CardHolder extends JComponent {
 	private boolean allowedToBeClicked = false;
 	private boolean isSelected =false;
 	private MouseClickedEvent<CardHolder> onClickEvent;
-	
-	public CardHolder(Card card, int positionX, int positionY, int width, int height) {
-		this.card = card;
-		this.currentPic = card.boardImage();
+	public CardHolder(int positionX, int positionY, int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.setBounds(positionX, positionY, width, height);
+		this.currentPic = defaultImage;
 		setVisible(true);
-		onBoardImage = true;
 		onClickEvent = new MouseClickedEvent<CardHolder>() {
 
 			@Override
@@ -67,6 +66,14 @@ public class CardHolder extends JComponent {
 	        }
 	    }); 
 	}
+	public CardHolder(Card card, int positionX, int positionY, int width, int height) {
+		this(positionX, positionY, width, height);
+		this.card = card;
+		this.currentPic = card.boardImage();
+		
+		onBoardImage = true;
+		
+	}
 	public CardHolder(Card card, int positionX, int positionY, int width, int height, MouseClickedEvent<CardHolder> clickEvent) {
 		this(card, positionX, positionY, width, height);
 		this.onClickEvent = clickEvent;
@@ -75,7 +82,7 @@ public class CardHolder extends JComponent {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if (isSelected && onBoardImage) {
-			g.drawImage(border, positionX, positionY, border.getWidth(null), border.getHeight(null), null); //draw border 
+			g.drawImage(border, positionX, positionY, width+BORDER_OFFSET, height+BORDER_OFFSET, null); //draw border 
 		}
 		g.drawImage(currentPic, positionX, positionY, width, height, null);
 		
@@ -83,11 +90,24 @@ public class CardHolder extends JComponent {
 
 	}
 	private void togglePic() {
+		if (card != null) {
 		if (onBoardImage)
 			this.currentPic = card.hoverImage();
 		else
 			this.currentPic = card.boardImage();
 		onBoardImage = !onBoardImage;
+		}
+	}
+	public Card removeCard() {
+		Card c = this.card;
+		this.card = null;
+		this.currentPic = defaultImage;
+		return c;
+	}
+	public  void setCard(Card c) {
+		this.card = c;
+		this.currentPic = onBoardImage ? card.boardImage() : card.hoverImage();
+		
 	}
 	private void mouseClickEvent() {
 		onClickEvent.clickedMouseEvent(this);

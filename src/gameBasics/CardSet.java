@@ -86,6 +86,14 @@ public class CardSet {
 		}
 		return nums;
 	}
+	public List<Integer> getEmptyIndices() {
+		List<Integer> nums = new LinkedList<Integer>();
+		for (int i = 0; i < cards.length; i++) {
+			if (cards[i] ==null)
+				nums.add(i);
+		}
+		return nums;
+	}
 	
 	
 	
